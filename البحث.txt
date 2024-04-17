@@ -1,0 +1,44 @@
+Wrapper Component هو عبارة عن مكون في React يقوم بتلفيف (أو إطارة) مكونات أخرى. يستخدم هذا المكون عادةً لتحديد السلوك العام أو العرض العام لمجموعة من المكونات دون الحاجة إلى تكرار الكود.
+
+مثال:
+
+لنفترض أن لدينا تطبيق React يعرض عدة صفحات. قد نحتاج إلى إضافة تخطيط عام لكل صفحة، مثل شريط تنقل وتخطيط العناصر. يمكننا استخدام Wrapper Component لتحقيق هذا الهدف.
+
+import React from 'react';
+import NavigationBar from './NavigationBar';
+
+const PageWrapper = ({ children }) => {
+  return (
+    <div>
+      <NavigationBar />
+      <div className="page-content">
+        {children}
+      </div>
+    </div>
+  );
+};
+
+export default PageWrapper;
+
+في هذا المثال، يقوم PageWrapper بتلفيف المكونات الفرعية. يضيف شريط التنقل على الجزء العلوي من كل صفحة، ثم يعرض محتوى الصفحة الفرعية داخل عنصر <div> يحمل الفئة "page-content".
+
+===================================================================
+
+ثم يمكن استخدام PageWrapper في كل صفحة داخل التطبيق:
+
+import React from 'react';
+import PageWrapper from './PageWrapper';
+
+const HomePage = () => {
+  return (
+    <PageWrapper>
+      <h1>مرحبا بك في الصفحة الرئيسية</h1>
+      <p>هذا مثال لاستخدام Wrapper Component.</p>
+    </PageWrapper>
+  );
+};
+
+export default HomePage;
+
+
+هكذا، باستخدام Wrapper Component، يمكننا تطبيق تخطيط عام أو مظهر لكل صفحة دون الحاجة إلى تكرار الشريط العلوي للتنقل أو أي عناصر أخرى على كل صفحة.
